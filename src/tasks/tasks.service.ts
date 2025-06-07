@@ -17,15 +17,12 @@ export class TasksService {
       completed: false,
     },
   ];
-
   findAll() {
     return this.tasks;
   }
-
   findById(id: string) {
     return this.tasks.find((task) => task.id === Number(id));
   }
-
   createTask(body: BodyTask) {
     const newId = this.tasks.length + 1;
     const newTask = {
@@ -33,6 +30,17 @@ export class TasksService {
       ...body,
     };
     this.tasks.push(newTask);
-    return `Tarefa criada com sucesso!`;
+    return 'Tarefa criada com sucesso!';
+  }
+  updateTask(id: string, body: any) {
+    const taskIndex = this.tasks.findIndex(task => task.id === Number(id))
+    if(taskIndex >= 0) {
+      const taskItem = this.tasks[taskIndex]
+      this.tasks[taskIndex] = {
+        ...taskItem,
+        ...body
+      }
+    }
+    return 'Tarefa atualizada com sucesso!'
   }
 }

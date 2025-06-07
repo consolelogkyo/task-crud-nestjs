@@ -30,7 +30,7 @@ export class TasksController {
 
   @Patch(':id')
   updateTask(@Param('id') id: string, @Body() body: any) {
-    return 'Task updated with ID: ' + id + ' and body: ' + JSON.stringify(body);
+    return this.tasksService.updateTask(id, body);
   }
 
   @Delete(':id')
